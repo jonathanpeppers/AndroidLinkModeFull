@@ -44,6 +44,12 @@ namespace AndroidApp
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
+            var asm = typeof(AndroidClassLibrary.Class1).Assembly;
+            var o = Activator.CreateInstance(asm.GetType("AndroidClassLibrary.Class1"));
+
+            View view = (View) sender;
+            Snackbar.Make(view, "Instance is null? " + o, Snackbar.LengthLong)
+                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
